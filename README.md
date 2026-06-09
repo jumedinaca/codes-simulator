@@ -152,17 +152,17 @@ streamlit    # dashboard web interactivo con sliders
 
 Instalar dependencias:
 ```bash
-pip install numpy scipy matplotlib seaborn Pillow reedsolo streamlit
+uv sync
 ```
 
 Correr el simulador:
 ```bash
-python main.py --source texto.txt --codec tunstall --k 3 --p 0.05
+TODO
 ```
 
 Correr el dashboard:
 ```bash
-streamlit run ui/app.py
+TODO
 ```
 
 ---
