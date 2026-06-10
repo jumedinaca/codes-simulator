@@ -1,5 +1,5 @@
 """
-Modullo 1 — Fuente de Información
+M1 — Fuente de Información
 ==========================
 Interfaz base para cualquier lector de fuente.
 Toda implementación concreta debe heredar de `SourceReader`.
