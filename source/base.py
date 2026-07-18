@@ -1,10 +1,10 @@
 """
 M1 — Fuente de Información
-==========================
+
 Interfaz base para cualquier lector de fuente.
 Toda implementación concreta debe heredar de `SourceReader`.
 
-Implementaciones esperadas:
+Implementaciones:
     TextReader   — lee texto plano UTF-8
     ImageReader  — lee imagen PNG/JPG como secuencia de bytes
     BitsReader   — lee secuencia binaria cruda
@@ -87,8 +87,6 @@ class SourceReader(ABC):
     def compute_probabilities(self, symbols: list[Any]) -> dict[Any, float]:
         """
         Calcula P(sᵢ) = freq(sᵢ) / N a partir de una lista de símbolos.
-        Las subclases pueden sobreescribir esto si tienen una fuente de
-        probabilidades más precisa (ej. tabla de frecuencias del idioma).
         """
         if not symbols:
             raise ValueError("La lista de símbolos está vacía.")

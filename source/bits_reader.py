@@ -18,13 +18,11 @@ class BitsReader(SourceReader):
         force_binary: si True, garantiza que el diccionario de probabilidades
                       siempre contenga ambos símbolos ('0' y '1'), asignando
                       probabilidad 0.0 al símbolo ausente.
-                      Útil para que los codecs no fallen con fuentes constantes.
     """
 
     def __init__(self, force_binary: bool = True) -> None:
         self._force_binary = force_binary
 
-    # ── Implementación de la interfaz ──────────────────────────────────────
 
     def read(self, source: str | list[int]) -> SourceStats:
         """

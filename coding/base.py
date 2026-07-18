@@ -1,10 +1,10 @@
 """
 M4 — Corrección de Errores
-===========================
+
 Interfaz base para cualquier código detector/corrector de errores.
 Toda implementación concreta debe heredar de `ErrorCorrectingCode`.
 
-Implementaciones esperadas:
+Implementaciones:
     HammingCode      — Hamming(7,4): corrige 1 error, detecta 2
     ReedSolomonCode  — Reed-Solomon: ideal para ráfagas de errores
 """

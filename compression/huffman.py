@@ -25,6 +25,7 @@ from .base import SourceCodec, Codebook, CompressionResult
 class _HuffmanNode:
     """Nodo interno del árbol de Huffman."""
 
+    # Forzamos los atributos
     __slots__ = ("symbol", "prob", "left", "right")
 
     def __init__(

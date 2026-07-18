@@ -1,10 +1,10 @@
 """
 M2 — Codificación Fuente (Compresión)
-======================================
+
 Interfaz base para cualquier algoritmo de compresión sin pérdida.
 Toda implementación concreta debe heredar de `SourceCodec`.
 
-Implementaciones esperadas:
+Implementaciones:
     HuffmanCodec     — codificación Huffman
     ShannonFanoCodec — codificación Shannon-Fano
     TunstallCodec    — codificación Tunstall (longitud fija, frases variables)

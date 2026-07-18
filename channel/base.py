@@ -1,12 +1,11 @@
 """
 M3 — Canal de Comunicación
-===========================
+
 Interfaz base para cualquier modelo de canal ruidoso.
 Toda implementación concreta debe heredar de `Channel`.
 
-Implementaciones esperadas:
+Implementaciones:
     BSChannel   — Canal Binario Simétrico (Binary Symmetric Channel)
-    AWGNChannel — Canal con ruido gaussiano aditivo (opcional/extensión)
 """
 
 from __future__ import annotations
