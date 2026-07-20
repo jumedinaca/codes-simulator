@@ -146,7 +146,6 @@ scipy        # funciones de información y estadística
 matplotlib   # gráficas BER, histogramas, árboles de compresión
 seaborn      # visualizaciones estadísticas
 Pillow       # lectura de imágenes PNG/JPG como fuente
-reedsolo     # implementación de Reed-Solomon
 streamlit    # dashboard web interactivo con sliders
 ```
 
@@ -157,7 +156,7 @@ uv sync
 
 Correr el simulador:
 ```bash
-TODO
+uv run main.py
 ```
 
 Correr el dashboard:
