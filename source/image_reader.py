@@ -13,7 +13,7 @@ Uso:
 
 from __future__ import annotations
 import os
-from .base import SourceReader, SourceStats
+from .source import SourceReader, SourceStats
 
 
 class ImageReader(SourceReader):
@@ -67,7 +67,7 @@ class ImageReader(SourceReader):
             probabilities = probs,
             entropy       = entropy,
             metadata      = {
-                "source_type"  : "image",
+                "source_type"  : f"image (format = {self._mode})",
                 "path"         : source,
                 "mode"         : self._mode,
                 "width"        : width,

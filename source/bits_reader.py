@@ -4,7 +4,7 @@ Lee una secuencia binaria cruda ('010110...') y trata cada bit como símbolo.
 """
 
 from __future__ import annotations
-from .base import SourceReader, SourceStats
+from .source import SourceReader, SourceStats
 
 
 class BitsReader(SourceReader):

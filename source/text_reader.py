@@ -9,7 +9,7 @@ Uso:
 """
 
 from __future__ import annotations
-from .base import SourceReader, SourceStats
+from .source import SourceReader, SourceStats
 
 
 class TextReader(SourceReader):

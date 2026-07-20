@@ -1,6 +1,6 @@
 """
 M5 — Métricas y Visualización
-==============================
+
 Interfaz base para recolectar, calcular y visualizar los resultados
 del pipeline completo. Toda implementación concreta debe heredar de
 `MetricsCollector` y/o `Visualizer` según su responsabilidad.
