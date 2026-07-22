@@ -15,7 +15,7 @@ and docstrings in Spanish to match the existing style.
 uv sync                # install dependencies (Python >=3.14, managed via uv)
 uv run main.py          # run the simulator, defaults to CLI mode
 uv run main.py -m cli   # interactive terminal UI (InquirerPy prompts)
-uv run main.py -m gui   # launches `streamlit run ui/app.py` (currently a stub — the only planned work, see Scope)
+uv run main.py -m gui   # launches the Streamlit dashboard (`streamlit run ui/app.py`)
 ```
 
 There is no test suite, linter, or type-checker configured in this repo yet — don't assume `pytest`,
@@ -71,19 +71,23 @@ which shells out to `streamlit run ui/app.py`.
 
 ## Scope
 
-The only remaining planned work is the **Streamlit GUI** (`ui/app.py`, currently a stub launched via
-`gui.run_gui()` → `streamlit run ui/app.py`). Everything else below is a deliberate scope decision, not an
-oversight — do not add AWGN, Reed-Solomon, metrics wiring, or channel/code CLI prompts unless explicitly
-asked:
+The Streamlit GUI (`ui/app.py`) is implemented: a single-page wizard (source/codec/channel configured as
+three cards, a "Simular" button, results shown in per-module tabs), themed via `.streamlit/config.toml`,
+and backed by `metrics.pipeline_metrics.PipelineMetrics` for the consolidated M5 report and CSV export —
+currently the *only* place in the codebase that uses `PipelineMetrics` (`cli.py` still doesn't). A BER-vs-p
+sweep chart was discussed but not built; while investigating it, a possible correctness issue surfaced in
+`HammingCode.decode()` (a single-bit error in a block wasn't corrected as expected in a manual check) that
+hasn't been root-caused yet.
 
-- `metrics/` (M5) is intentionally not invoked from `cli.py`/`main.py` — `PipelineMetrics`/CSV export exist
-  but are out of scope for the run path.
+Beyond the GUI, the following are deliberate scope decisions, not oversights — do not add AWGN,
+Reed-Solomon, or CLI channel/code prompts unless explicitly asked:
+
 - Only `BSChannel` exists for M3 (no AWGN) and only `HammingCode` exists for M4 (no Reed-Solomon) — both by
-  design, not TODOs.
+  design, matching the README.
 - Channel and coding scheme are permanently hardcoded in `cli.py` (`HammingCode()` — no constructor args,
   fixed at n=7, k=4 — and `BSChannel(p=0.2)`); there is no `ask_channel()`/`ask_code()` and none is planned.
+  The GUI, by contrast, does expose `p` and a seed as widgets (`BSChannel` already supported both as
+  constructor params, so this was just wiring, not new capability).
 
-The README describes a more elaborate/idealized module layout (e.g. `compression/` instead of
-`s_compression/`, `channel/awgn.py`, `coding/reed_solomon.py`, `metrics/calculator.py`+`plotter.py`) that
-does not match the current source tree or its scope — trust the actual code structure and the Scope section
-above over the README when they disagree.
+The README's project structure and module descriptions were reconciled with the actual source tree in this
+session — if you find them diverging again later, trust the code.
