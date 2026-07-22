@@ -80,10 +80,18 @@ class PipelineMetrics:
 
         # Calcular eficiencia global
         h     = self._source.entropy
-        l_bar = self._compression.codebook.avg_length
+        cb    = self._compression.codebook
+        l_bar = cb.avg_length
         ber   = (self._coding_stats.ber_after
                  if self._coding_stats else self._transmission.ber)
-        comp_eff  = h / l_bar if l_bar > 0 else 0.0
+        if cb.code_length is not None:
+            # Longitud fija (Tunstall): L̄ está en símbolos/frase, no en
+            # bits/símbolo, así que la tasa real es k / L̄ (ver
+            # TunstallCodec.compute_efficiency).
+            rate     = cb.code_length / l_bar if l_bar > 0 else 0.0
+            comp_eff = rate / h if h > 0 else 0.0
+        else:
+            comp_eff = h / l_bar if l_bar > 0 else 0.0
         overall   = comp_eff * (1 - ber)
 
         return PipelineReport(
